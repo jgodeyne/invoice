@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rexpfd>
+    <destination path="jego-imac.jego-server:/var/www"/>
+    <options createDirectoryStructure="true" createSelectedOnly="false" descriptionFilePath="/invoice/jego-server.rexpfd" overWriteExistingFiles="true" reviewSynchronize="false" saveSettings="true"/>
+    <selectedElements>
+        <project name="invoice"/>
+    </selectedElements>
+</rexpfd>

@@ -1,0 +1,220 @@
+/* Default styles */
+body {
+	width: auto;
+	margin: auto;
+	font-family: Verdana, Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	line-height: 150%;
+	color: #26537C;
+	/* background-color: #f7f7f7;
+	background-image: url("../images/bg.png"); */
+	background-repeat: repeat-x;
+}
+
+a {
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #043A6B;
+	text-decoration: underline;
+}
+
+h1 {
+	font-size: 130%;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 120%;
+	font-weight: normal;
+}
+
+h3 {
+	font-size: 110%;
+	font-weight: normal;
+}
+
+h4 {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+input, select {
+	font-family: Verdana, Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	color: #26537C;
+}
+
+input.button {
+	width: 100px;
+/* 	height: 75px; */
+}
+
+/* Header style */
+
+#header {
+/* 	background: transparent; */
+	background-image: url(../images/banner-invoice.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	color: #26537C;
+	padding: 2px;
+	font-size: 48px;
+	text-align: center;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	position: relative;
+	height: 177px;
+}
+
+/* Middle style */
+#middle {
+	width: 100%;
+	position: relative;
+}
+
+/* Login style */
+#login {
+	width: 250px;
+	padding: 5px;
+/* 	border-style: solid; */
+/* 	border-width: 1px; */
+/* 	border-color: #009999; */
+}
+
+#login h1 {
+	text-align: center;
+	padding: 3px;
+	color: #FFD140;
+	background-color: #043A6B;
+}
+
+/* Main style */
+#main {
+	padding: 5px;
+	float: left;
+	margin: 0px 0px 0px 10px;
+}
+
+/* Horizontal menu styles */
+.menu {
+	/*padding: 5px;*/
+	width: 100%;
+	height: 25px;
+	overflow: hidden;
+	background: #043A6B;
+	margin-bottom: 5px;
+}
+
+.menu ul{
+	font: bold 11px Arial, Verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.menu li{
+	display: inline;
+	margin: 0 0px 0 0;
+	padding: 0;
+	text-transform: uppercase;
+}
+
+.menu a{
+	float: left;
+	color: #FFDD73;
+	background: #043A6B no-repeat left top; /*default background color of tabs, left corner image*/
+	margin: 0 0px 0 0;
+	padding: 0 0 1px 3px;
+	text-decoration: none;
+	letter-spacing: 1px;
+}
+
+.menu a span{
+	float: left;
+	display: block;
+	background: transparent no-repeat right top; /*right corner image*/
+	padding: 7px 9px 3px 6px;
+	cursor: pointer;
+}
+
+.menu a span{
+	float: none;
+}
+
+.menu a:hover, .menu li.selected a{
+	background-color: #26537C ; /*background color of tabs onMouseover*/
+	color: #FFDD73;
+}
+
+.menu a:hover span{
+	background-color: transparent;
+}
+
+/* Form table styles */
+.form {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #BBBBBB;
+	background-color: #EEEEEE;
+	padding: 10px;
+}
+	
+/* List table styles */
+
+.list {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.list td {
+	padding: 5px;
+}
+
+.list thead td {
+	background-color: #043A6B;	
+	color: #FFDD73;
+}
+
+.list tbody td {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #009999;
+	border-collapse: collapse;
+}
+
+.list tbody tr:hover {
+	background-color: #FFDD73
+}
+
+/* Reference styles */
+.reference {
+	padding-left: 0;
+}
+
+.reference li{
+	display: inline;
+	list-style: none;
+}
+
+
+/* Various Styles */
+#version {
+	font-size: 75%;
+	text-align: center;
+	margin-right: 15px;
+}
+
+.error {
+	color: red;	
+}
+
+img.arrow-up {
+	border: none;
+	background: transparent;
+}
+
+.redrow {
+	color: red;
+}

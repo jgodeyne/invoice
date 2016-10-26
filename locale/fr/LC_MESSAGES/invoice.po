@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-30 13:58+0100\n"
+"PO-Revision-Date: 2011-07-30 13:58+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: /Users/jean/Documents/eclipse_workspaces/php/Invoice\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: invoice/invoice_detail.php:123
+msgid "Tongeren"
+msgstr "Tongres"
+
+#: invoice/invoice_detail.php:130
+msgid "Tel."
+msgstr "Tél."
+
+#: invoice/invoice_detail.php:132
+msgid "GSM"
+msgstr "GSM"
+
+#: invoice/invoice_detail.php:133
+msgid "e-mail"
+msgstr "e-mail"
+
+#: invoice/invoice_detail.php:134
+msgid "BTW Nr"
+msgstr "N° T.V.A."
+
+#: invoice/invoice_detail.php:147
+msgid "T.a.v."
+msgstr "À l'attn de"
+
+#: invoice/invoice_detail.php:155
+#, fuzzy
+msgid "FACTUUR"
+msgstr "FACTURE"
+
+#: invoice/invoice_detail.php:156
+#, fuzzy
+msgid "Factuur Nr"
+msgstr "Facture n°"
+
+#: invoice/invoice_detail.php:157
+msgid "BTW Nr bestemmeling"
+msgstr "T.V.A. destinataire"
+
+#: invoice/invoice_detail.php:161
+msgid "Datum<br>levering"
+msgstr "Date<br>livraison"
+
+#: invoice/invoice_detail.php:162
+msgid "Klant<br>referentie"
+msgstr "Client<br>référence"
+
+#: invoice/invoice_detail.php:163
+msgid "Omschrijving"
+msgstr "Description"
+
+#: invoice/invoice_detail.php:164
+msgid "Aantal"
+msgstr "Nombre"
+
+#: invoice/invoice_detail.php:165
+msgid "Eenheids-<br>prijs"
+msgstr "Prix/unité"
+
+#: invoice/invoice_detail.php:166
+msgid "Korting"
+msgstr "Réduction"
+
+#: invoice/invoice_detail.php:167
+msgid "Vaste<br>prijs"
+msgstr "Forfait"
+
+#: invoice/invoice_detail.php:168
+msgid "Totaal<br>prijs"
+msgstr "Prix total"
+
+#: invoice/invoice_detail.php:186
+msgid "Subtotaal"
+msgstr "Sous-total"
+
+#: invoice/invoice_detail.php:190
+msgid "BTW"
+msgstr "T.V.A."
+
+#: invoice/invoice_detail.php:194
+msgid "Totaal"
+msgstr "Total"
+
+#: invoice/invoice_detail.php:198
+#, fuzzy, php-format
+msgid "Te betalen op rekening - IBAN %s binnen 30 dagen na datum van de factuur."
+msgstr "À payer sur le compte - IBAN %s dans les 30 jours à compter de la date de la facture."
+
+#~ msgid "Invoice"
+#~ msgstr "Facture"
