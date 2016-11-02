@@ -21,9 +21,9 @@ $locale = "fr_BE.utf8";
 setlocale(LC_ALL, $locale, "French_Belgium");
 bindtextdomain($domain, $directory) . "<br>";
 textdomain($domain) . "<br>";
-$locale = localeconv();
-$dec_point = $locale['mon_decimal_point'];
-$thousands_sep = $locale['mon_thousands_sep'];
+$localeconv = localeconv();
+$dec_point = $localeconv['mon_decimal_point'];
+$thousands_sep = $localeconv['mon_thousands_sep'];
 $invoice_date = strftime("%A %d %B %Y", strtotime($invoice->getOriginalDate()));
 
 ?>
@@ -38,7 +38,6 @@ table {
 	border-width: 1px;
 	border-spacing: 0px;
 	border-style: none;
-	border-color: ;
 	border-collapse: separate;
 	background-color: white;
 }
@@ -48,7 +47,6 @@ table th {
 	border-style: none;
 	border-color: gray;
 	background-color: white;
-	-moz-border-radius: ;
 }
 table td {
 	border-width: 1px;
@@ -56,10 +54,9 @@ table td {
 	border-style: none;
 	border-color: gray;
 	background-color: white;
-	-moz-border-radius: ;
 }
 table.regels {
-	width=1000px;
+	width: 1000px;
 	border-width: 1px;
 	border-spacing: 0px;
 	border-style: solid;
@@ -73,7 +70,6 @@ table.regels th {
 	border-style: solid;
 	border-color: black;
 	background-color: white;
-	-moz-border-radius: ;
 }
 table.regels td {
 	border-width: 1px;
@@ -81,10 +77,9 @@ table.regels td {
 	border-style: solid;
 	border-color: black;
 	background-color: white;
-	-moz-border-radius: ;
 }
 table.totaal {
-	width=1000px;
+	width: 1000px;
 	border-width: 1px;
 	border-spacing: 0px;
 	border-style: solid;
@@ -98,7 +93,6 @@ table.totaal th {
 	border-style: solid;
 	border-color: black;
 	background-color: white;
-	-moz-border-radius: ;
 }
 table.totaal td {
 	border-width: 1px;
@@ -106,7 +100,6 @@ table.totaal td {
 	border-style: solid;
 	border-color: black;
 	background-color: white;
-	-moz-border-radius: ;
 }
 
 </style>
