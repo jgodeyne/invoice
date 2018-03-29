@@ -42,7 +42,7 @@ class Job extends Entity implements EntityInterface {
 	}
 	
 	public function close() {
-		$this->delivery_date = date("Y/m/d");
+		$this->delivery_date = date("Y-m-d");
 		$this->status = "CLOSED";
 		$this->save();
 	}

@@ -25,11 +25,11 @@ $client = Client::findById($invoice->getClientId());
 </tr>
 <tr>
 <td>&nbsp;Faktuur Nr:</td>
-<td>&nbsp;<?=$invoice->number?></td>
+<td>&nbsp;<?=$invoice->getNumber()?></td>
 </tr>
 <tr>
 <td>&nbsp;Klant:</td>
-<td>&nbsp;<?=$client->name?></td>
+<td>&nbsp;<?=$client->getName()?></td>
 </tr>
 <tr>
 <td>&nbsp;Referentie:</td>
