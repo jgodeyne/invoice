@@ -13,7 +13,7 @@ function convertEuroToUSDate($original_date) {
 function convertUSToEuroDate($original_date) {
 	//error_log("convertUSToEuroDate->from: " . $original_date);
 	$converted_date=null;
-	if($original_date!=null) {
+	if($original_date!=null && $original_date!='0000-00-00') {
 		$date_array = explode("-", $original_date);
 		$converted_date = $date_array[2] . "/" . $date_array[1] . "/" . $date_array[0];
 	}
@@ -41,7 +41,7 @@ function convertUSToEuroDateTime($original_date) {
 		$datetime_array = explode(" ", $original_date);
 		$date_array = explode("-", $datetime_array[0]);
 		$converted_date = $date_array[2] . "/" . $date_array[1] . "/" . $date_array[0];
-		$converted_datetime = $converted_date . " " . $datetime_array[1];
+		$converted_datetime = $converted_date . " " . substr($datetime_array[1], 0, 5);
 	}
 	//error_log("convertUSToEuroDateTime->to: " . $converted_datetime);
 	return $converted_datetime;

@@ -33,6 +33,7 @@ $executor_id = "";
 $price_exec = "";
 $client = "";
 $executor = "";
+$author_rights = true;
 if($id) {
 	$job = Job::findById($id);
 	$request_date = $job->getRequestDate();
@@ -50,6 +51,7 @@ if($id) {
 	$executor_id = $job->getExecutorId();
 	$client = Client::findById($client_id);
 	$executor = Company::findById($executor_id);
+	$author_rights = $job->getAuthorRights();
 
 	$title="Wijzig Job";
 	$action="../job/job_update.php";
@@ -141,6 +143,10 @@ foreach (Company::findAll() as $company) {
 </td>
 </tr>
 <tr>
+<td>&nbsp;Auteurs Rechten:</td>
+<td>&nbsp;<input type="checkbox" name="author_rights" <?=($author_rights?'checked':'')?>/></td>
+</tr>
+<tr>
 <td>&nbsp;Datum te leveren door uitvoerder (dd/mm/yyyy hh:mm):</td>
 <td>&nbsp;<input type="text" maxlength="19" size="19" name="delivery_date_exec" id="delivery_date_exec" value="<?=$delivery_date_exec?>" pattern="\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{1,2}" />
 </td>
@@ -155,7 +161,7 @@ foreach (Company::findAll() as $company) {
 <input type="submit" value="Bewaren" name="bewaren" class="button">
 </p>
 </form>
-<p />
+<p></p>
 </div>
 </div>
 <?php

@@ -28,7 +28,7 @@ class Entity implements EntityInterface {
 		$db = new Database();
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class()) . " where id = '" . $id . "'";
-		//error_log($query);
+		error_log($query);
 		$result = $db->query($query);
 		if($result)
 			$object = $db->fetchObject($result, get_called_class());
@@ -54,7 +54,7 @@ class Entity implements EntityInterface {
 		$db = new Database();
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class());
-		//error_log($query);
+		error_log($query);
 		$result = $db->query($query);
 		if($result) {
 			while ($object = $db->fetchObject($result, get_called_class())) {
@@ -69,7 +69,7 @@ class Entity implements EntityInterface {
 		$db = new Database();
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class()) . " where " . $criteria;
-		//error_log($query);
+		error_log($query);
 		$result = $db->query($query);
 		if($result) {
 			while ($object = $db->fetchObject($result, get_called_class())) {
@@ -85,7 +85,7 @@ class Entity implements EntityInterface {
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class())
 			. " order by " . $order;
-		//error_log($query);
+		error_log($query);
 		$result = $db->query($query);
 		if($result) {
 			while ($object = $db->fetchObject($result, get_called_class())) {
@@ -101,7 +101,7 @@ class Entity implements EntityInterface {
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class()) . " where " . $criteria
 			. " order by " . $order;
-		//error_log($query);
+		error_log($query);
 		$result = $db->query($query);
 		if($result) {
 			while ($object = $db->fetchObject($result, get_called_class())) {
@@ -117,7 +117,7 @@ class Entity implements EntityInterface {
 			$db = new Database();
 			$db->connect();
 			$query = "delete from " . Entity::getTableName(get_called_class()) . " where id='" . $this->getId() . "'";
-			//error_log($query);
+			error_log($query);
 			$result= $db->query($query);
 			$db->disconnect();
 		}

@@ -15,6 +15,7 @@ class Client extends Entity implements EntityInterface {
 	private $phone_number;
 	private $vat_number;
 	private $vat_rate;
+	private $remark;
 
 	public function getProperties() {
 		return get_object_vars($this);
@@ -32,6 +33,7 @@ class Client extends Entity implements EntityInterface {
 		$this->setVatRate(htmlspecialchars($post['vat_rate']));
 		$this->setInvoicePaymentDelay(htmlspecialchars($post['invoice_payment_delay']));
 		$this->setLanguage(htmlspecialchars($post['language']));
+		$this->setRemark(htmlspecialchars($post['remark']));
 	}
 	
 	/*
@@ -146,6 +148,14 @@ class Client extends Entity implements EntityInterface {
 	public function setVatRate($vat_rate)
 	{
 	    $this->vat_rate = $vat_rate;
+	}
+
+	public function getRemark() {
+		return $this->remark;
+	}
+
+	public function setRemark($remark) {
+		$this->remark = $remark;
 	}
 }
 ?>

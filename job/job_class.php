@@ -20,6 +20,7 @@ class Job extends Entity implements EntityInterface {
 	private $executor_id;
 	private $delivery_date_exec;
 	private $price_exec;
+	private $author_rights;
 	
 	public function getProperties() {
 		return get_object_vars($this);
@@ -29,7 +30,7 @@ class Job extends Entity implements EntityInterface {
 		$this->request_date = convertEuroToUSDate(htmlspecialchars($post['request_date']));
 		$this->expected_delivery_datetime = convertEuroToUSDateTime(htmlspecialchars($post['expected_delivery_datetime']));
 		$this->client_reference = htmlspecialchars($post['client_reference']);
-		$this->description = htmlspecialchars($post['description']);
+		$this->description = str_replace("'","\'",htmlspecialchars($post['description']));
 		$this->number_of_units = str_replace(",",".",htmlspecialchars($post['number_of_units']));
 		$this->unit = htmlspecialchars($post['unit']);
 		$this->unit_price = str_replace(",", ".", htmlspecialchars($post['unit_price']));
@@ -39,6 +40,7 @@ class Job extends Entity implements EntityInterface {
 		$this->executor_id = htmlspecialchars($post['executor_id']);
 		$this->delivery_date_exec = convertEuroToUSDate(htmlspecialchars($post['delivery_date_exec']));
 		$this->price_exec = str_replace(",", ".", htmlspecialchars($post['price_exec']));
+		$this->author_rights = isset($post['author_rights'])?true:false;
 	}
 	
 	public function close() {
@@ -217,5 +219,13 @@ class Job extends Entity implements EntityInterface {
 	
 	public function setPriceExec($price_exec) {
 		$this->price_exec = $price_exec;
+	}
+
+	public function getAuthorRights() {
+		return $this->author_rights;
+	}
+
+	public function setAuthorRights($author_rights) {
+		$this->author_rights = $author_rights;
 	}
 }

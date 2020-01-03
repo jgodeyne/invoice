@@ -29,6 +29,7 @@ if(isset($_POST['filter_executor_id'])) {
 }else{
 	$filter_executor_id = "none";
 }
+$filter_year = htmlspecialchars($_POST['filter_year']);
 ?>
 <h1>Jobs</h1>
 <h2>Filter:</h2>
@@ -75,12 +76,26 @@ foreach ($company as $company) {
 </select>
 </td>
 </tr>
+<tr>
+<td>&nbsp;Jaartal</td>
+<td>&nbsp;
+<select name="filter_year" onChange="job_filter.submit()">
+<?php
+$currentyear = date('Y');
+for ($i = 0; $i <= 19; $i++) {
+?>
+<option value="<?=$currentyear-$i?>" <?=($filter_year==$currentyear-$i)?('selected="selected"'):('');?>><?=$currentyear-$i?></option>
+<?php } ?>
+</select>
+</td>
+</tr>
 </tbody>
 </table>
 </form>
 <?php
 
 $criteria="status = '" . $filter_status . "'";
+$criteria=$criteria . " and year(request_date)='" . $filter_year . "'";
 if ($filter_client_id!='none') {
 	$criteria=$criteria . " and client_id='" . $filter_client_id . "'";
 }

@@ -24,6 +24,7 @@ if($id) {
 	$vat_rate = $client->getVatRate();
 	$invoice_payment_delay = $client->getInvoicePaymentDelay();
 	$language = $client->getLanguage();
+	$remark = $client->getRemark();
 
 	$title="Wijzig Klant";
 	$action="../client/client_update.php";
@@ -84,6 +85,10 @@ else {
 <tr>
 <td>&nbsp;Taal:</td>
 <td>&nbsp;<input type="text" maxlength="10" size="10" name="language" value="<?=$language?>" <?=$disabled?>/></td>
+</tr>
+<tr>
+<td>&nbsp;Opmerking:</td>
+<td>&nbsp;<input type="text" maxlength="50" size="50" name="remark" value="<?=$remark?>" <?=$disabled?>/></td>
 </tr>
 </tbody>
 </table>

@@ -15,7 +15,7 @@ include_once("../common/html_head.php");
 <td>Id</td>
 <td>Naam</td>
 <td>Kontact<br/>persoon</td>
-<td>Adres</td>
+<td>Opmerking</td>
 <td>Telefoon<br>nummer</td>
 <td>Mobiel<br>nummer</td>
 <td>E-Mail</td>
@@ -32,7 +32,7 @@ foreach($clients as $client) { ?>
 <td><?=$client->getId()?></td>
 <td><?=$client->getName()?></td>
 <td><?=$client->getContact()?></td>
-<td><?=$client->getAddressLine1()?>,&nbsp;<?=$client->getAddressLine2()?></td>
+<td><?=$client->getRemark()?></td>
 <td><?=$client->getPhoneNumber()?></td>
 <td><?=$client->getMobileNumber()?></td>
 <td><?=$client->getEmail()?></td>

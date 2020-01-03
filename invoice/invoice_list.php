@@ -11,8 +11,17 @@ include_once("../common/html_head.php");
 <div id="main">
 <?php 
 $filter_status = htmlspecialchars($_POST['filter_status']);
+$filter_year = htmlspecialchars($_POST['filter_year']);
+if(isset($_POST['filter_client_id'])) {
+	$filter_client_id = htmlspecialchars($_POST['filter_client_id']);
+}else{
+	$filter_client_id='none';
+}
 if($filter_status=='') {
 	$filter_status='OPEN';
+}
+if($filter_year=='') {
+	$filter_year=date('Y');
 }
 ?>
 <h1>Facturen</h1>
@@ -26,6 +35,34 @@ if($filter_status=='') {
 <select name="filter_status" onChange="invoice_filter.submit()">
 <option value="OPEN" <?=($filter_status=='OPEN')?('selected="selected"'):('');?>>Open</option>
 <option value="PAID" <?=($filter_status=='PAID')?('selected="selected"'):('');?>>Betaald</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;Klant:</td>
+<td>&nbsp;
+<select name="filter_client_id" onChange="invoice_filter.submit()">
+<option value="none"></option>
+<?php
+$clients = Client::findAllOrdened("name");
+foreach ($clients as $client) {
+?>
+<option value="<?=$client->getId()?>" <?=($client->getId()==$filter_client_id)?('selected="selected"'):('');?>><?=$client->getName()?></option>
+<?php
+} ?>
+</select>
+</td>
+</tr>
+<tr>
+<td>&nbsp;Jaartal</td>
+<td>&nbsp;
+<select name="filter_year" onChange="invoice_filter.submit()">
+<?php
+$currentyear = date('Y');
+for ($i = 0; $i <= 19; $i++) {
+?>
+<option value="<?=$currentyear-$i?>" <?=($filter_year==$currentyear-$i)?('selected="selected"'):('');?>><?=$currentyear-$i?></option>
+<?php } ?>
 </select>
 </td>
 </tr>
@@ -54,7 +91,12 @@ $total_total = 0;
 </thead>
 <tbody>
 <?php 
-$invoices = Invoice::findAllByCriteriaOrdened("status = '" . $filter_status . "'","due_date asc");
+$filter_criteria = "status = '" . $filter_status . "'";
+$filter_criteria = $filter_criteria . " and year(date)='" . $filter_year . "'";
+if ($filter_client_id!='none') {
+	$filter_criteria=$filter_criteria . " and client_id='" . $filter_client_id . "'";
+}
+$invoices = Invoice::findAllByCriteriaOrdened($filter_criteria ,"due_date asc");
 foreach ($invoices as $invoice) { 
 $client=Client::findById($invoice->getClientId());
 
