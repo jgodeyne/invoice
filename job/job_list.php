@@ -29,7 +29,11 @@ if(isset($_POST['filter_executor_id'])) {
 }else{
 	$filter_executor_id = "none";
 }
-$filter_year = htmlspecialchars($_POST['filter_year']);
+if(isset($_POST['filter_year'])) {
+	$filter_year = htmlspecialchars($_POST['filter_year']);
+} else {
+	$filter_year = date('Y');	
+}
 ?>
 <h1>Jobs</h1>
 <h2>Filter:</h2>

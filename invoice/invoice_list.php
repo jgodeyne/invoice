@@ -17,11 +17,15 @@ if(isset($_POST['filter_client_id'])) {
 }else{
 	$filter_client_id='none';
 }
-if($filter_status=='') {
+if(isset($_POST['filter_status'])){
+	$filter_status = htmlspecialchars($_POST['filter_status']);
+}else{
 	$filter_status='OPEN';
 }
-if($filter_year=='') {
-	$filter_year=date('Y');
+if(isset($_POST['filter_year'])) {
+	$filter_year = htmlspecialchars($_POST['filter_year']);
+} else {
+	$filter_year = date('Y');	
 }
 ?>
 <h1>Facturen</h1>
