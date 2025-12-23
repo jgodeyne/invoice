@@ -48,8 +48,12 @@
 
 How to use the changes:
 - Run `composer install` to install dev deps.
-- Run migrations: `php bin/migrate.php` or `composer migrate` (after `composer install`).
-- Run tests: `composer test`.
+- Use `make` or composer scripts locally to run checks quickly:
+  - `make lint` (or `composer run lint`) — runs PHP syntax check across the repo
+  - `make phpcs` (or `composer phpcs`) — runs PHPCS with the project's ruleset
+  - `make test` (or `composer test`) — runs PHPUnit
+  - `make migrate` (or `composer migrate`) — runs the migration runner
+  - `make ci` — runs lint, phpcs and tests
 
 > Note: I couldn't run `php` or `composer` in this environment; CI will run the checks and you can run them locally and report any failures so I can follow up.
 

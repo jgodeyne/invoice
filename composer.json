@@ -14,6 +14,7 @@
   "scripts": {
     "test": "phpunit",
     "phpcs": "phpcs --standard=phpcs.xml",
+    "lint": "find . -name '*.php' -not -path './vendor/*' -not -path './.github/*' -not -path './node_modules/*' -exec php -l {} \\;",
     "migrate": "php bin/migrate.php"
   }
 }
