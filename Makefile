@@ -6,7 +6,14 @@ help:
 	@echo "Targets: install, lint, phpcs, test, migrate, ci"
 
 install:
-	composer install
+	@if command -v composer >/dev/null 2>&1 ; then \
+		composer install; \
+	elif [ -f composer.phar ] ; then \
+		php composer.phar install; \
+	else \
+		echo "Composer not found. Install with 'brew install composer' or see https://getcomposer.org/download/"; \
+		exit 1; \
+	fi
 
 lint:
 	# Syntax check PHP files
