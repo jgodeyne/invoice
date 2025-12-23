@@ -191,5 +191,6 @@ foreach ($jobs as $job) { ?>
 <p style="font-size: 12px">TVA 6% conformément à l’article 18 § 1,7° du Code sur la TVA et la rubrique XXIX du tableau A de l’A.R. n° 20 d.d. 20/07/1970.</p>
 <?php }?>
 <p style="font-size: 12px">A payer sur le compte - IBAN <?=$company->getIban()?> - BIC <?=$company->getBic()?> dans les <?=$client->getInvoicePaymentDelay()?> jours à compter de la date de la facture.</p>
+<p style="font-size: 12px">La présente facture est soumise aux conditions générales de LINGO BV.</p>
 </body>
 </html>

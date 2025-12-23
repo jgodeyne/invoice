@@ -100,7 +100,7 @@ foreach (Client::findAllOrdened("name") as $client) {
 </tr>
 <tr>
 <td>&nbsp;Omschrijving:</td>
-<td>&nbsp;<input type="text" maxlength="100" size="100" name="description" value="<?=$description?>" /></td>
+<td>&nbsp;<input type="text" maxlength="500" size="100" name="description" value="<?=$description?>" /></td>
 </tr>
 <tr>
 <td>&nbsp;Eenheid:</td>

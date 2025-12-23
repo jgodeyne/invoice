@@ -192,5 +192,6 @@ BTW (<?=number_format($client->getVatRate(), 2 , $dec_point, $thousands_sep) ?> 
 <p style="font-size: 12px">6% BTW overeenkomstig artikel 18 par. 1,7° van het BTW-wetboek en rubriek XXIX van tabel A van het KB nr. 20 d.d. 20/07/1970.</p>
 <?php }?>
 <p style="font-size: 12px">Te betalen op rekening - IBAN <?=$company->getIban()?> - BIC <?=$company->getBic()?> binnen <?=$client->getInvoicePaymentDelay()?> dagen na datum van de factuur.</p>
+<p style="font-size: 12px">De verkoopvoorwaarden van LINGO BV zijn van toepassing op deze factuur.</p>
 </body>
 </html>
