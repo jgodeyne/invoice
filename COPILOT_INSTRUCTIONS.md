@@ -41,9 +41,9 @@
 ### What I implemented in this change ✅
 - Added `composer.json` with `phpunit` and `phpcs` dev deps and useful scripts.
 - Added `phpcs.xml` (PSR-12) ruleset to apply gradually.
-- Added a simple migration runner (`bin/migrate.php`) and two migrations: `001_create_schema_migrations.sql` and `002_add_invoice_discount.sql`.
+- Added a simple migration runner (`bin/migrate.php`) and a baseline migration: `001_create_schema_migrations.sql`.
 - Updated `login/process.php` to use prepared statements and `password_verify()`; it supports legacy `md5()` passwords and upgrades them to `password_hash()` on successful login.
-- Added `discount` property to `Invoice` (`invoice/invoice_class.php`) with getter/setter, and a basic unit test `tests/InvoiceTest.php` using PHPUnit.
+- Added a basic unit test scaffolding under `tests/` and a sample test to demonstrate writing tests with PHPUnit.
 
 How to use the changes:
 - Run `composer install` to install dev deps.

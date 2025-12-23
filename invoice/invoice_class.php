@@ -12,7 +12,6 @@ class Invoice extends Entity implements EntityInterface {
 	private $total_amount;
 	private $due_date;
 	private $status;
-	private $discount;
 	
 	public function paid() {
 		$this->status = "PAID";
@@ -22,16 +21,6 @@ class Invoice extends Entity implements EntityInterface {
 	public function open() {
 		$this->status = "OPEN";
 		$this->save();
-	}
-
-	public function getDiscount()
-	{
-		return $this->discount;
-	}
-
-	public function setDiscount($discount)
-	{
-		$this->discount = $discount;
 	}
 	
 	public function getProperties() {
