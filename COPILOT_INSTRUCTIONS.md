@@ -41,16 +41,17 @@
 ### What I implemented in this change ✅
 - Added `composer.json` with `phpunit` and `phpcs` dev deps and useful scripts.
 - Added `phpcs.xml` (PSR-12) ruleset to apply gradually.
-- Added a simple migration runner (`bin/migrate.php`) and a baseline migration: `001_create_schema_migrations.sql`.
+- Added a simple migration runner (`bin/migrate.php`) and a baseline migration `001_create_schema_migrations.sql`.
 - Updated `login/process.php` to use prepared statements and `password_verify()`; it supports legacy `md5()` passwords and upgrades them to `password_hash()` on successful login.
-- Added a basic unit test scaffolding under `tests/` and a sample test to demonstrate writing tests with PHPUnit.
+- Added a GitHub Actions CI workflow `.github/workflows/ci.yml` that runs PHP lint, `phpcs`, and PHPUnit on pushes and pull requests.
+- Added test bootstrap (`tests/bootstrap.php`) and a minimal unit test (`tests/InvoiceExistsTest.php`) to validate the test harness.
 
 How to use the changes:
 - Run `composer install` to install dev deps.
 - Run migrations: `php bin/migrate.php` or `composer migrate` (after `composer install`).
 - Run tests: `composer test`.
 
-> Note: I couldn't run `php` or `composer` in this environment; please run the commands locally or in CI and report any failures so I can follow up.
+> Note: I couldn't run `php` or `composer` in this environment; CI will run the checks and you can run them locally and report any failures so I can follow up.
 
 
 ## How to add a feature — step-by-step (example-first) 🛠️
