@@ -12,8 +12,8 @@
  * Last Updated: August 26, 2004
  */
 session_start();
-$_SESSION['module'] = htmlspecialchars($_REQUEST['module']);
-$_SESSION['mode'] = htmlspecialchars($_REQUEST['mode']);
+$_SESSION['module'] = isset($_REQUEST['module']) ? htmlspecialchars((string)$_REQUEST['module']) : '';
+$_SESSION['mode'] = isset($_REQUEST['mode']) ? htmlspecialchars((string)$_REQUEST['mode']) : '';
 if ($_SESSION['mode']=="view") {
 	$_SESSION['authorized']=true;
     $_SESSION['userlevel'] = 0;
