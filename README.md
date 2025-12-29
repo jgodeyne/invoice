@@ -11,13 +11,15 @@ Short overview and steps to deploy the `invoice` site to your NAS and run it wit
 1. From your workstation, run a dry-run:
 
 ```bash
-./deploy.sh --dry-run --host jego-nas --user jean --path /docker/invoice/www
+./deploy.sh
 ```
 
 2. Do the real deploy:
 
+Edit `deploy.sh` and set `DRY_RUN=0`, then run:
+
 ```bash
-./deploy.sh --host jego-nas --user jean --path /docker/invoice/www
+./deploy.sh
 ```
 
 3. On the NAS, start the service (in `/volume1/docker/invoice`):
@@ -39,8 +41,8 @@ docker-compose up -d
 - The compose file already sets a small `command:` to avoid the Apache `AH00558` ServerName warning.
 
 ## deploy.sh
-- Usage and options: `./deploy.sh [--host HOST] [--user USER] [--path PATH] [--port PORT] [--dry-run] [--no-chown] [--chown UID:GID]`
-- Defaults: host `jego-nas`, path `/docker/invoice/www`, it excludes `.git`, `node_modules` and `.env` by default, and attempts `sudo chown -R 33:33` (www-data) on the remote unless `--no-chown` is used.
+- Usage: `./deploy.sh` (the script runs a **dry-run** by default). To perform a real deploy, edit `deploy.sh` and set `DRY_RUN=0`.
+- Details: host `jego-nas`, path `/docker/invoice/www`. The script excludes `.git`, `node_modules` and `.env` by default and attempts `sudo chown -R 33:33` (www-data) on the remote unless you set `DO_CHOWN=0` inside the script.
 
 ## Permissions & ownership
 - After deploy, ensure the webroot is readable/writable by `www-data` in the container (commonly UID/GID `33:33`):

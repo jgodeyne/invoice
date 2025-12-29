@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# deploy.sh - Rsync the invoice site to your NAS
-# Defaults:
+# deploy.sh - Rsync the invoice site to your NAS (hardcoded)
+# Hardcoded defaults:
 #   REMOTE_HOST=jego-nas
 #   REMOTE_USER=jean
 #   REMOTE_PATH=/docker/invoice/www
-# Usage:
-#   ./deploy.sh [--host HOST] [--user USER] [--path PATH] [--port PORT] [--no-chown] [--dry-run]
-# Examples:
-#   ./deploy.sh --host jego-nas --user jean --path /docker/invoice/www
-#   ./deploy.sh --dry-run
+# Behavior:
+#   - The script runs a DRY RUN by default (no files are changed). To perform a real deploy, edit this file and set DRY_RUN=0.
+#   - No CLI parameters are supported; change variables inside the script if you need different target or options.
 
 # Hardcoded deployment config (no CLI parameters)
 REMOTE_HOST="jego-nas"
