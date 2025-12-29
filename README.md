@@ -8,18 +8,18 @@ Short overview and steps to deploy the `invoice` site to your NAS and run it wit
 - The MySQL container accessible as `mysql` on Docker network `dockernetwork`
 
 ## Quick start (recommended)
-1. From your workstation, run a dry-run:
+1. From your workstation, run a dry-run (default):
 
 ```bash
 ./deploy.sh
+# or explicitly: ./deploy.sh --dry-run
 ```
 
 2. Do the real deploy:
 
-Edit `deploy.sh` and set `DRY_RUN=0`, then run:
-
 ```bash
-./deploy.sh
+./deploy.sh --deploy
+# or: ./deploy.sh --real
 ```
 
 3. On the NAS, start the service (in `/volume1/docker/invoice`):
