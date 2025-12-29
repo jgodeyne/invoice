@@ -10,40 +10,33 @@ set -euo pipefail
 #   - The script runs a DRY RUN by default (no files are changed). To perform a real deploy, edit this file and set DRY_RUN=0.
 #   - No CLI parameters are supported; change variables inside the script if you need different target or options.
 
-# Hardcoded deployment config (with optional CLI flags)
+# Hardcoded deployment config (with optional CLI flag for dry-run)
 REMOTE_HOST="jego-nas"
 REMOTE_USER="jean"
 REMOTE_PATH="/docker/invoice/www"
 SSH_PORT=22
 RSYNC_OPTS='-avz --delete --exclude=.git --exclude=node_modules --exclude=.env'
 CHOWN_ON_REMOTE='33:33'
-# By default run a dry-run. Use the --deploy flag to perform a real deploy.
-DRY_RUN=1
-DO_CHOWN=1
+# By default perform a real deploy. Use --dry-run to perform a dry run.
+DRY_RUN=0
 
-# Optional argument parsing for convenience:
-#   --dry-run      Force a dry run (default behavior)
-#   --deploy       Perform the real deploy (sets DRY_RUN=0)
-#   --no-chown     Do not change ownership on remote
-#   -h|--help      Show brief usage
+# Optional argument parsing:
+#   --dry-run  Run as a dry run (no files will be changed)
+#   -h|--help  Show brief usage
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --dry-run)
       DRY_RUN=1; shift ;;
-    --deploy|--real)
-      DRY_RUN=0; shift ;;
-    --no-chown)
-      DO_CHOWN=0; shift ;;
     -h|--help)
-      echo "Usage: ./deploy.sh [--dry-run] [--deploy] [--no-chown]"; exit 0 ;;
+      echo "Usage: ./deploy.sh [--dry-run]"; exit 0 ;;
     *)
-      echo "Unknown arg: $1"; echo "Usage: ./deploy.sh [--dry-run] [--deploy] [--no-chown]"; exit 2 ;;
+      echo "Unknown arg: $1"; echo "Usage: ./deploy.sh [--dry-run]"; exit 2 ;;
   esac
 done
 
 if [[ $DRY_RUN -eq 1 ]]; then
   RSYNC_OPTS="$RSYNC_OPTS --dry-run"
-  echo "*** DRY RUN: no files will be changed on the remote (use --deploy to run for real) ***"
+  echo "*** DRY RUN: no files will be changed on the remote (use no flag to run real deploy) ***"
 fi
 
 echo "Deploying to: ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}"
@@ -61,11 +54,9 @@ if [[ $DRY_RUN -eq 1 ]]; then
   exit 0
 fi
 
-if [[ $DO_CHOWN -eq 1 ]]; then
-  echo "Adjusting ownership on remote to ${CHOWN_ON_REMOTE} (using sudo)"
-  ssh -p "${SSH_PORT}" "${REMOTE_USER}@${REMOTE_HOST}" \
-    "sudo chown -R ${CHOWN_ON_REMOTE} '${REMOTE_PATH}' || echo 'chown failed (you may not have sudo privileges)'; sudo find '${REMOTE_PATH}' -type d -exec chmod 755 {} \; ; sudo find '${REMOTE_PATH}' -type f -exec chmod 644 {} \;"
-  echo "Ownership and permissions adjusted (if sudo was available)."
-fi
+echo "Adjusting ownership on remote to ${CHOWN_ON_REMOTE} (using sudo)"
+ssh -p "${SSH_PORT}" "${REMOTE_USER}@${REMOTE_HOST}" \
+  "sudo chown -R ${CHOWN_ON_REMOTE} '${REMOTE_PATH}' || echo 'chown failed (you may not have sudo privileges)'; sudo find '${REMOTE_PATH}' -type d -exec chmod 755 {} \; ; sudo find '${REMOTE_PATH}' -type f -exec chmod 644 {} \;"
+echo "Ownership and permissions adjusted (if sudo was available)."
 
 echo "Deploy finished."
