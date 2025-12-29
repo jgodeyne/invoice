@@ -8,6 +8,14 @@ set -euo pipefail
 
 OUT_FILE=${OUT_FILE:-ssh_password.gpg}
 
+# Require `gpg` to be available
+if ! command -v gpg >/dev/null 2>&1; then
+  echo "gpg is not installed. Install it first." >&2
+  echo "  macOS (Homebrew): brew install gnupg" >&2
+  echo "  Debian/Ubuntu: sudo apt-get update && sudo apt-get install -y gnupg" >&2
+  exit 1
+fi
+
 if [ -t 0 ]; then
   # interactive
   read -s -p "Enter SSH password to encrypt: " PW

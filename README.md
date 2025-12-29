@@ -54,6 +54,21 @@ docker-compose up -d
 - `deploy.sh` will attempt to decrypt `ssh_password.gpg` (you will be prompted for the GPG passphrase) and, if successful, use `sshpass` to supply the SSH password to `rsync`.
 - Requirements: `gpg` (for decryption) and `sshpass` (to pass the password to rsync/ssh). If `sshpass` is not installed, the script will fall back to using SSH key or interactive SSH.
 
+**Install notes**:
+- macOS (Homebrew):
+
+```bash
+brew install gnupg
+# sshpass may require a tap; try:
+brew install hudochenkov/sshpass/sshpass || brew install sshpass
+```
+
+- Debian/Ubuntu:
+
+```bash
+sudo apt-get update && sudo apt-get install -y gnupg sshpass
+```
+
 **Security note:** Storing passwords even encrypted requires protecting the GPG passphrase; prefer SSH keys with a passphrase + `ssh-agent` when possible.
 
 ## Permissions & ownership

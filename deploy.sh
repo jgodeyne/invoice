@@ -8,7 +8,10 @@ set -euo pipefail
 #   REMOTE_PATH=/docker/invoice/www
 # Behavior:
 #   - The script performs a REAL deploy by default. Use `--dry-run` to test without changing remote files.
-#   - The script will attempt to set ownership on the remote to UID:GID 33:33 (www-data).
+#   - If `ssh_password.gpg` exists in the script directory, the script will attempt to decrypt it and pass
+#     the SSH password to rsync/ssh using `sshpass`. This requires `gpg` (for decryption) and `sshpass`.
+#     If decryption or `sshpass` is not available, the script falls back to normal SSH (keys or interactive login).
+#   - The script will attempt to set ownership on the remote to UID:GID 33:33 (www-data) via sudo.
 #   - Change the hardcoded variables below if you need a different target or behavior.
 
 # Hardcoded deployment config (with optional CLI flag for dry-run)
