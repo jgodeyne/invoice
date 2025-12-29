@@ -149,7 +149,7 @@ class Entity implements EntityInterface {
 			foreach ($classvars as $varname => $varvalue) {
 				if ($varname!="id") {
 					$varnames .= $varname . ",";
-					$varvalues .= "'" . $varvalue . "',";
+					$varvalues .= ($varvalue === null ? "NULL," : "'" . $varvalue . "',");
 				}
 			}
 			$varnames = substr($varnames, 0, -1);

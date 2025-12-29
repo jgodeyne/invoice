@@ -5,7 +5,7 @@ include_once("../company/company_class.php");
 include_once("invoice_class.php");
 include_once("../job/job_class.php");
 
-$client_id = htmlspecialchars($_GET['client_id']);
+$client_id = isset($_GET['client_id']) ? htmlspecialchars((string)$_GET['client_id']) : '';
 
 $client = Client::findById($client_id);
 

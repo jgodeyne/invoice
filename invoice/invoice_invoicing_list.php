@@ -55,14 +55,15 @@ $db->disconnect();
 <tfoot>
 <tr>
 <td colspan="3">Totaal:</td>
-<td align="right"><?=number_format($total_subtotal,'2',',','.')?></td>
-<td align="right"><?=number_format($total_vat,'2',',','.')?></td>
-<td align="right"><?=number_format($total_total,'2',',','.')?></td>
+<td align="right"><?=number_format($total_subtotal, 2, ',', '.')?></td>
+<td align="right"><?=number_format($total_vat, 2, ',', '.')?></td>
+<td align="right"><?=number_format($total_total, 2, ',', '.')?></td>
 <td>&nbsp;</td>
 </tr>
 </tfoot>
 </table>
-<p class="error"><?=htmlspecialchars($_GET["error"])?></p>
+<?php $err = isset($_GET["error"]) ? htmlspecialchars((string)$_GET["error"]) : ""; ?>
+<p class="error"><?=$err?></p>
 </div>
 </div>
 </body>

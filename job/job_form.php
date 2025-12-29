@@ -12,6 +12,10 @@ include_once 'job_class.php';
 include_once '../client/client_class.php';
 include_once '../company/company_class.php';
 try{
+if(isset($_SESSION['error'])) {
+    echo '<div style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</div>';
+    unset($_SESSION['error']);
+}
 if(isset($_GET["id"])) {
 	$id=htmlspecialchars($_GET["id"]);
 }else{
@@ -91,7 +95,7 @@ foreach (Client::findAllOrdened("name") as $client) {
 </tr>
 <tr>
 <td>&nbsp;Datum/tijd te leveren (dd/mm/yyyy hh:mm):</td>
-<td>&nbsp;<input type="text" maxlength="19" size="19" name="expected_delivery_datetime" id="expected_delivery_datetime" value="<?=$expected_delivery_datetime?>" pattern="\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{1,2}" />
+<td>&nbsp;<input type="text" maxlength="19" size="19" name="expected_delivery_datetime" id="expected_delivery_datetime" value="<?=$expected_delivery_datetime?>" pattern="\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{1,2}" required />
 </td>
 </tr>
 <tr>
@@ -116,11 +120,11 @@ foreach (Client::findAllOrdened("name") as $client) {
 </tr>
 <tr>
 <td>&nbsp;Aantal enheden:</td>
-<td>&nbsp;<input type="text" maxlength="10" size="10" name="number_of_units" value="<?=str_replace(".",",",$number_of_units)?>"/></td>
+<td>&nbsp;<input type="text" maxlength="10" size="10" name="number_of_units" value="<?=str_replace(".",",",$number_of_units)?>" required /></td>
 </tr>
 <tr>
 <td>&nbsp;Prijs per eenheid:</td>
-<td>&nbsp;<input type="text" maxlength="15" size="15" name="unit_price" value="<?=str_replace(".",",",$unit_price)?>"/></td>
+<td>&nbsp;<input type="text" maxlength="15" size="15" name="unit_price" value="<?=str_replace(".",",",$unit_price)?>" required /></td>
 </tr>
 <tr>
 <td>&nbsp;Korting %:</td>

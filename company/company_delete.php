@@ -1,7 +1,7 @@
 <?php
 include_once("../common/session.php");
 
-$id=htmlspecialchars($_GET["id"]);
+$id = isset($_GET["id"]) ? htmlspecialchars((string)$_GET["id"]) : '';
 
 include_once 'company_class.php';
 $company = Company::findById($id);

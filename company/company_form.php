@@ -125,7 +125,8 @@ if($me) {
 </p>
 </form>
 <p />
-<p class="error"><?=htmlspecialchars($_GET["error"])?></p>
+<?php $err = isset($_GET["error"]) ? htmlspecialchars((string)$_GET["error"]) : ""; ?>
+<p class="error"><?=$err?></p>
 </div>
 </div>
 </body>

@@ -8,7 +8,7 @@ include_once("../common/html_head.php");
 <h1>Aanmelden</h1>
 <form action="../login/process.php" method="post">
 <table class="form">
-<tr><td colspan="2"><font color=red><?=$_REQUEST['login_error'] ?></font></td></tr>
+<tr><td colspan="2"><font color=red><?php echo isset($_REQUEST['login_error']) ? htmlspecialchars((string)$_REQUEST['login_error']) : ''; ?></font></td></tr>
 <tr><td>Gebruiker:</td><td><input type="text" name="user" maxlength="30" size="15" autofocus="autofocus" required="required" /></td></tr>
 <tr><td>Wachtwoord:</td><td><input type="password" name="pass" maxlength="30" size="15" /></td></tr>
 <tr><td colspan="2" align="left">

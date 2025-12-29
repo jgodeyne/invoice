@@ -7,7 +7,7 @@ include_once("../client/client_class.php");
 include_once("../job/job_class.php");
 include_once '../common/date_functions.php';
 
-$invoice_id = htmlspecialchars($_GET['invoice_id']);
+$invoice_id = isset($_GET['invoice_id']) ? htmlspecialchars((string)$_GET['invoice_id']) : '';
 $invoice = Invoice::findById($invoice_id);
 
 $company = Company::findById("1");
@@ -20,10 +20,33 @@ $domain = 'invoice';
 $locale = "nl_BE.utf8";
  
 setlocale(LC_ALL, $locale, "Dutch_Belgium");
+if (class_exists('Locale')) {
+	Locale::setDefault($locale);
+}
 $localeconv = localeconv();
 $dec_point = $localeconv['mon_decimal_point'];
 $thousands_sep = $localeconv['mon_thousands_sep'];
-$invoice_date = strftime("%A %d %B %Y", strtotime($invoice->getOriginalDate()));
+$invoice_date = '';
+$invoiceDateRaw = $invoice->getOriginalDate();
+if (!empty($invoiceDateRaw)) {
+	try {
+		$invoiceDateObj = new DateTime($invoiceDateRaw);
+		if (class_exists('IntlDateFormatter')) {
+			$formatter = new IntlDateFormatter(
+				$locale,
+				IntlDateFormatter::FULL,
+				IntlDateFormatter::NONE,
+				date_default_timezone_get(),
+				IntlDateFormatter::GREGORIAN
+			);
+			$invoice_date = $formatter->format($invoiceDateObj);
+		} else {
+			$invoice_date = $invoiceDateObj->format('Y-m-d');
+		}
+	} catch (Exception $e) {
+		$invoice_date = '';
+	}
+}
 
 ?>
 <style type="text/css">

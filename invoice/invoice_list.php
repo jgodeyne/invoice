@@ -10,22 +10,12 @@ include_once("../common/html_head.php");
 <div id="middle">
 <div id="main">
 <?php 
-$filter_status = htmlspecialchars($_POST['filter_status']);
-$filter_year = htmlspecialchars($_POST['filter_year']);
+$filter_status = isset($_POST['filter_status']) ? htmlspecialchars((string)$_POST['filter_status']) : 'OPEN';
+$filter_year   = isset($_POST['filter_year'])   ? htmlspecialchars((string)$_POST['filter_year'])   : date('Y');
 if(isset($_POST['filter_client_id'])) {
-	$filter_client_id = htmlspecialchars($_POST['filter_client_id']);
-}else{
-	$filter_client_id='none';
-}
-if(isset($_POST['filter_status'])){
-	$filter_status = htmlspecialchars($_POST['filter_status']);
-}else{
-	$filter_status='OPEN';
-}
-if(isset($_POST['filter_year'])) {
-	$filter_year = htmlspecialchars($_POST['filter_year']);
+	$filter_client_id = htmlspecialchars((string)$_POST['filter_client_id']);
 } else {
-	$filter_year = date('Y');	
+	$filter_client_id='none';
 }
 ?>
 <h1>Facturen</h1>
@@ -78,7 +68,8 @@ $total_subtotal = 0;
 $total_vat = 0;
 $total_total = 0;
 ?>
-<p class="error"><?=htmlspecialchars($_GET["error"])?></p>
+<?php $err = isset($_GET["error"]) ? htmlspecialchars((string)$_GET["error"]) : ""; ?>
+<p class="error"><?=$err?></p>
 <table class="list">
 <thead>
 <tr>

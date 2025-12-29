@@ -41,6 +41,8 @@ docker-compose up -d
 ## deploy.sh
 - Usage: `./deploy.sh` (performs a real deploy by default). Use `--dry-run` to test without changing remote files.
 - Details: host `jego-nas`, path `/docker/invoice/www`. The script excludes `.git`, `node_modules` and `.env` by default and will attempt `sudo chown -R 33:33` (www-data) on the remote.
+ - Usage: `./deploy.sh` (performs a real deploy by default). Use `--dry-run` to test without changing remote files.
+ - Details: host `jego-nas`, path `/docker/invoice/www`. The script excludes `.git`, `node_modules` and `.env` by default. The script does not modify file ownership on the remote; run the manual ownership/permission commands below if needed.
 
 ### Encrypted SSH password (optional)
 - You can store an SSH password encrypted in `ssh_password.gpg` and `deploy.sh` will use it automatically if present.
@@ -73,13 +75,13 @@ sudo apt-get update && sudo apt-get install -y gnupg sshpass
 
 ## Permissions & ownership
 - After deploy, ensure the webroot is readable/writable by `www-data` in the container (commonly UID/GID `33:33`):
+ - After deploy, ensure the webroot is readable/writable by `www-data` in the container (commonly UID/GID `33:33`). The deploy script no longer changes ownership; run these commands manually on the NAS if required:
 
 ```bash
 sudo chown -R 33:33 /docker/invoice/www
 sudo find /docker/invoice/www -type d -exec chmod 755 {} \;
 sudo find /docker/invoice/www -type f -exec chmod 644 {} \;
 ```
-
 ## Notes & troubleshooting
 - The application now reads DB credentials from environment variables (DB_HOST/DB_USER/DB_PASSWORD/DB_SCHEMA) and falls back to `ppa/database_conf.ini` or safe defaults.
 - If you see DB connection issues, check that `mysql` is reachable on the `dockernetwork` and credentials match.

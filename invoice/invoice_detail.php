@@ -2,7 +2,7 @@
 include_once("../invoice/invoice_class.php");
 include_once("../client/client_class.php");
 
-$invoice_id = htmlspecialchars($_GET['id']);
+$invoice_id = isset($_GET['id']) ? htmlspecialchars((string)$_GET['id']) : '';
 $invoice = Invoice::findById($invoice_id);
 
 $client = Client::findById($invoice->getClientId());

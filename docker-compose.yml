@@ -6,16 +6,11 @@ services:
     image: php:8.2-apache
     restart: always
     command: >
-      bash -c "echo 'ServerName localhost' > /etc/apache2/conf-available/servername.conf && a2enconf servername >/dev/null 2>&1 || true && exec apache2-foreground"
+      bash -c "apt-get update && apt-get install -y libicu-dev && docker-php-ext-install mysqli && docker-php-ext-enable mysqli && docker-php-ext-install intl && docker-php-ext-enable intl && docker-php-ext-install gettext && docker-php-ext-enable gettext && echo 'ServerName localhost' > /etc/apache2/conf-available/servername.conf && a2enconf servername >/dev/null 2>&1 || true && exec apache2-foreground"
     ports:
       - "8080:80"
     volumes:
-      - /docker/invoice/www:/var/www/html:rw
-    environment:
-      DB_HOST: mysql
-      DB_USER: invoice
-      DB_PASSWORD: invoice
-      DB_SCHEMA: invoice
+      - /volume1/docker/invoice/www:/var/www/html:rw
     networks:
       - dockernetwork
 

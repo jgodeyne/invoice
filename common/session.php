@@ -7,4 +7,5 @@ if ($_SESSION['authorized'] != true)
     exit;
 }
 $sec_level=$_SESSION['userlevel'];
+    $userLogged = isset($_COOKIE["userLogged"]) ? htmlspecialchars((string)$_COOKIE["userLogged"]) : '';
 ?>
