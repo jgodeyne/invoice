@@ -10,7 +10,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - /volume1/docker/invoice/www:/var/www/html:rw
+      - /docker/invoice/www:/var/www/html:rw
     environment:
       DB_HOST: mysql
       DB_USER: invoice

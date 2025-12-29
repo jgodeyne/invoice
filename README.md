@@ -11,13 +11,13 @@ Short overview and steps to deploy the `invoice` site to your NAS and run it wit
 1. From your workstation, run a dry-run:
 
 ```bash
-./deploy.sh --dry-run --host jego-nas --user jean --path /volume1/docker/invoice/www
+./deploy.sh --dry-run --host jego-nas --user jean --path /docker/invoice/www
 ```
 
 2. Do the real deploy:
 
 ```bash
-./deploy.sh --host jego-nas --user jean --path /volume1/docker/invoice/www
+./deploy.sh --host jego-nas --user jean --path /docker/invoice/www
 ```
 
 3. On the NAS, start the service (in `/volume1/docker/invoice`):
@@ -46,9 +46,9 @@ docker-compose up -d
 - After deploy, ensure the webroot is readable/writable by `www-data` in the container (commonly UID/GID `33:33`):
 
 ```bash
-sudo chown -R 33:33 /volume1/docker/invoice/www
-sudo find /volume1/docker/invoice/www -type d -exec chmod 755 {} \;
-sudo find /volume1/docker/invoice/www -type f -exec chmod 644 {} \;
+sudo chown -R 33:33 /docker/invoice/www
+sudo find /docker/invoice/www -type d -exec chmod 755 {} \;
+sudo find /docker/invoice/www -type f -exec chmod 644 {} \;
 ```
 
 ## Notes & troubleshooting
