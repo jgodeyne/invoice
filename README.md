@@ -20,10 +20,10 @@ Short overview and steps to deploy the `invoice` site to your NAS and run it wit
 ./deploy.sh
 ```
 
-3. On the NAS, start the service (in `/volume1/docker/invoice`):
+3. On the NAS, start the service (in `/docker/invoice`):
 
 ```bash
-cd /volume1/docker/invoice
+cd /docker/invoice
 docker-compose up -d
 ```
 
@@ -39,8 +39,8 @@ docker-compose up -d
 - The compose file already sets a small `command:` to avoid the Apache `AH00558` ServerName warning.
 
 ## deploy.sh
-- Usage: `./deploy.sh` (the script runs a **dry-run** by default). To perform a real deploy, edit `deploy.sh` and set `DRY_RUN=0`.
-- Details: host `jego-nas`, path `/docker/invoice/www`. The script excludes `.git`, `node_modules` and `.env` by default and attempts `sudo chown -R 33:33` (www-data) on the remote unless you set `DO_CHOWN=0` inside the script.
+- Usage: `./deploy.sh` (performs a real deploy by default). Use `--dry-run` to test without changing remote files.
+- Details: host `jego-nas`, path `/docker/invoice/www`. The script excludes `.git`, `node_modules` and `.env` by default and will attempt `sudo chown -R 33:33` (www-data) on the remote.
 
 ## Permissions & ownership
 - After deploy, ensure the webroot is readable/writable by `www-data` in the container (commonly UID/GID `33:33`):

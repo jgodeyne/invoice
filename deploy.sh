@@ -7,8 +7,9 @@ set -euo pipefail
 #   REMOTE_USER=jean
 #   REMOTE_PATH=/docker/invoice/www
 # Behavior:
-#   - The script runs a DRY RUN by default (no files are changed). To perform a real deploy, edit this file and set DRY_RUN=0.
-#   - No CLI parameters are supported; change variables inside the script if you need different target or options.
+#   - The script performs a REAL deploy by default. Use `--dry-run` to test without changing remote files.
+#   - The script will attempt to set ownership on the remote to UID:GID 33:33 (www-data).
+#   - Change the hardcoded variables below if you need a different target or behavior.
 
 # Hardcoded deployment config (with optional CLI flag for dry-run)
 REMOTE_HOST="jego-nas"
