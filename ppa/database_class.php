@@ -36,20 +36,20 @@ class Database implements DatabaseInterface {
 	}
 	
 	public function connect()   {
-	    if(!$this->con) {  
-            $this->myconn = mysqli_connect($this->db_host,$this->db_user,$this->db_pass);  
-            if($this->myconn) {  
-                $seldb = mysqli_select_db($this->myconn, $this->db_schema);  
-                if($seldb) {  
-                    $this->con = true;  
-                } else {  
-                    throw new Exception(mysqli_error($this->myconn));  
-                }  
-            } else {  
-                throw new Exception(mysqli_error($this->myconn));  
-            }
+		if(!$this->con) {  
+			$this->myconn = mysqli_connect($this->db_host,$this->db_user,$this->db_pass);  
+			if($this->myconn) {  
+				$seldb = mysqli_select_db($this->myconn, $this->db_schema);  
+				if($seldb) {  
+					$this->con = true;  
+				} else {  
+					throw new Exception(mysqli_error($this->myconn));  
+				}  
+			} else {  
+				throw new Exception(mysqli_connect_error());  
+			}
 			return $this->myconn;  
-        }  
+		}  
 	}
 	
 	public function disconnect()    {
