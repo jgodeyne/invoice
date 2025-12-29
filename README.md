@@ -11,13 +11,13 @@ Short overview and steps to deploy the `invoice` site to your NAS and run it wit
 1. From your workstation, run a dry-run:
 
 ```bash
-./deploy.sh --dry-run --host jego-nas --user <nas-user> --path /volume1/docker/invoice/www
+./deploy.sh --dry-run --host jego-nas --user jean --path /volume1/docker/invoice/www
 ```
 
 2. Do the real deploy:
 
 ```bash
-./deploy.sh --host jego-nas --user <nas-user> --path /volume1/docker/invoice/www
+./deploy.sh --host jego-nas --user jean --path /volume1/docker/invoice/www
 ```
 
 3. On the NAS, start the service (in `/volume1/docker/invoice`):
