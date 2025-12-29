@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  invoice:
+    container_name: invoice
+    image: php:8.2-apache
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - /volume1/docker/invoice/www:/var/www/html:rw
+    environment:
+      DB_HOST: mysql
+      DB_USER: invoice
+      DB_PASSWORD: invoice
+      DB_SCHEMA: invoice
+    networks:
+      - dockernetwork
+
+networks:
+  dockernetwork:
+    external: true
