@@ -94,9 +94,4 @@ if [[ $DRY_RUN -eq 1 ]]; then
   exit 0
 fi
 
-echo "Adjusting ownership on remote to ${CHOWN_ON_REMOTE} (using sudo)"
-ssh -p "${SSH_PORT}" "${REMOTE_USER}@${REMOTE_HOST}" \
-  "sudo chown -R ${CHOWN_ON_REMOTE} '${REMOTE_PATH}' || echo 'chown failed (you may not have sudo privileges)'; sudo find '${REMOTE_PATH}' -type d -exec chmod 755 {} \; ; sudo find '${REMOTE_PATH}' -type f -exec chmod 644 {} \;"
-echo "Ownership and permissions adjusted (if sudo was available)."
-
 echo "Deploy finished."
