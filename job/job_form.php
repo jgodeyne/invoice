@@ -3,8 +3,8 @@ include_once("../common/session.php");
 include_once("../common/html_head.php");
 ?>
 <body>
-<? include("../common/header.php"); ?>
-<? include("../common/menu.php"); ?>
+<?php include("../common/header.php"); ?>
+<?php include("../common/menu.php"); ?>
 <div id="middle">
 <div id="main">
 <?php

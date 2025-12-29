@@ -6,8 +6,8 @@ include_once("../common/html_head.php");
 ?>
 <body>
 <script type="text/javascript">function confirmMsg(msg, url) {  if (confirm(msg)) {   document.location = url;  }}</script>
-<? include("../common/header.php"); ?>
-<? include("../common/menu.php"); ?>
+<?php include("../common/header.php"); ?>
+<?php include("../common/menu.php"); ?>
 <div id="middle">
 <div id="main">
 <h1>Uitvoerders</h1>

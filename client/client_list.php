@@ -3,9 +3,9 @@ include_once("../common/session.php");
 include_once("../common/html_head.php");
 ?>
 <body>
-<? include("../common/header.php"); ?>
-<? include("../common/menu.php"); ?>
-<? include("client_class.php"); ?>
+<?php include("../common/header.php"); ?>
+<?php include("../common/menu.php"); ?>
+<?php include("client_class.php"); ?>
 <div id="middle">
 <div id="main">
 <h1>Klanten</h1>

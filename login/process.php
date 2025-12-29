@@ -1,4 +1,4 @@
-<?
+<?php
 include_once '../ppa/database_class.php';
 session_start();
 $db = new Database();
