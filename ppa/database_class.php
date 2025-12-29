@@ -11,11 +11,28 @@ class Database implements DatabaseInterface {
 	private $myconn;
 		
 	function Database() {
-		$database_conf = parse_ini_file("database_conf.ini");
-		$this->db_host = $database_conf["Host"];
-		$this->db_user = $database_conf["User"];
-		$this->db_pass = $database_conf["Password"];
-		$this->db_schema = $database_conf["Schema"];
+		// Prefer environment variables (DB_HOST, DB_USER, DB_PASSWORD, DB_SCHEMA)
+		$env_host = getenv('DB_HOST');
+		if ($env_host !== false) {
+			$this->db_host = $env_host;
+			$this->db_user = getenv('DB_USER') !== false ? getenv('DB_USER') : 'invoice';
+			$this->db_pass = getenv('DB_PASSWORD') !== false ? getenv('DB_PASSWORD') : 'invoice';
+			$this->db_schema = getenv('DB_SCHEMA') !== false ? getenv('DB_SCHEMA') : 'invoice';
+		} else {
+			$database_conf = @parse_ini_file("database_conf.ini");
+			if ($database_conf !== false) {
+				$this->db_host = isset($database_conf["Host"]) ? $database_conf["Host"] : 'mysql';
+				$this->db_user = isset($database_conf["User"]) ? $database_conf["User"] : 'invoice';
+				$this->db_pass = isset($database_conf["Password"]) ? $database_conf["Password"] : 'invoice';
+				$this->db_schema = isset($database_conf["Schema"]) ? $database_conf["Schema"] : 'invoice';
+			} else {
+				// Defaults
+				$this->db_host = 'mysql';
+				$this->db_user = 'invoice';
+				$this->db_pass = 'invoice';
+				$this->db_schema = 'invoice';
+			}
+		}
 	}
 	
 	public function connect()   {
