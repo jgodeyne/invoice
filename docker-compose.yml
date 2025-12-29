@@ -5,6 +5,8 @@ services:
     container_name: invoice
     image: php:8.2-apache
     restart: always
+    command: >
+      bash -c "echo 'ServerName localhost' > /etc/apache2/conf-available/servername.conf && a2enconf servername >/dev/null 2>&1 || true && exec apache2-foreground"
     ports:
       - "8080:80"
     volumes:
