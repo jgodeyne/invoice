@@ -42,13 +42,49 @@ fi
 
 echo "Deploying to: ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH}"
 
+# If an encrypted password is available, try to use it with sshpass
+SSH_PASSWORD_FILE="ssh_password.gpg"
+USE_SSHPASS=0
+if [ -f "$SSH_PASSWORD_FILE" ]; then
+  if ! command -v gpg >/dev/null 2>&1; then
+    echo "ssh_password.gpg found but 'gpg' is not installed. Install gpg or remove the file." >&2
+  else
+    echo "Found $SSH_PASSWORD_FILE — attempting to decrypt (you will be prompted for GPG passphrase if needed)"
+    set +x
+    SSH_PASSWORD=$(gpg --quiet --decrypt "$SSH_PASSWORD_FILE" 2>/dev/null || true)
+    set -x
+    if [ -n "${SSH_PASSWORD}" ]; then
+      if command -v sshpass >/dev/null 2>&1; then
+        USE_SSHPASS=1
+      else
+        echo "Decrypted password available but 'sshpass' is not installed; please install sshpass to use password-based SSH." >&2
+      fi
+    else
+      echo "Could not decrypt $SSH_PASSWORD_FILE (wrong passphrase or other error)." >&2
+    fi
+  fi
+fi
+
 # If not a dry run, ensure the remote path exists first
 if [[ $DRY_RUN -eq 0 ]]; then
   echo "Ensuring remote path ${REMOTE_PATH} exists (creating if needed)"
-  ssh -p "${SSH_PORT}" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p '${REMOTE_PATH}' || true"
+  if [[ $USE_SSHPASS -eq 1 ]]; then
+    # rsync/ssh via sshpass will handle authentication
+    sshpass -p "$SSH_PASSWORD" ssh -p "${SSH_PORT}" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p '${REMOTE_PATH}' || true"
+  else
+    ssh -p "${SSH_PORT}" "${REMOTE_USER}@${REMOTE_HOST}" "mkdir -p '${REMOTE_PATH}' || true"
+  fi
 fi
 
-rsync -e "ssh -p ${SSH_PORT}" ${RSYNC_OPTS} ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}"
+# Build rsync command
+if [[ $USE_SSHPASS -eq 1 ]]; then
+  echo "Using sshpass to supply SSH password for rsync (decrypted from $SSH_PASSWORD_FILE)."
+  sshpass -p "$SSH_PASSWORD" rsync -e "ssh -p ${SSH_PORT}" ${RSYNC_OPTS} ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}"
+  # Unset password variable
+  unset SSH_PASSWORD
+else
+  rsync -e "ssh -p ${SSH_PORT}" ${RSYNC_OPTS} ./ ${REMOTE_USER}@${REMOTE_HOST}:"${REMOTE_PATH}"
+fi
 
 if [[ $DRY_RUN -eq 1 ]]; then
   echo "Dry run complete. Review output above."

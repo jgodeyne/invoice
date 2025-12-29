@@ -42,6 +42,20 @@ docker-compose up -d
 - Usage: `./deploy.sh` (performs a real deploy by default). Use `--dry-run` to test without changing remote files.
 - Details: host `jego-nas`, path `/docker/invoice/www`. The script excludes `.git`, `node_modules` and `.env` by default and will attempt `sudo chown -R 33:33` (www-data) on the remote.
 
+### Encrypted SSH password (optional)
+- You can store an SSH password encrypted in `ssh_password.gpg` and `deploy.sh` will use it automatically if present.
+- To create the encrypted password file locally, run:
+
+```bash
+./encrypt_password.sh
+# or: echo "mypassword" | gpg --symmetric --cipher-algo AES256 -o ssh_password.gpg
+```
+
+- `deploy.sh` will attempt to decrypt `ssh_password.gpg` (you will be prompted for the GPG passphrase) and, if successful, use `sshpass` to supply the SSH password to `rsync`.
+- Requirements: `gpg` (for decryption) and `sshpass` (to pass the password to rsync/ssh). If `sshpass` is not installed, the script will fall back to using SSH key or interactive SSH.
+
+**Security note:** Storing passwords even encrypted requires protecting the GPG passphrase; prefer SSH keys with a passphrase + `ssh-agent` when possible.
+
 ## Permissions & ownership
 - After deploy, ensure the webroot is readable/writable by `www-data` in the container (commonly UID/GID `33:33`):
 
