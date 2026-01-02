@@ -27,20 +27,20 @@ class Job extends Entity implements EntityInterface {
 	}
 	
 	public function setFromPost($post) {
-		$this->request_date = convertEuroToUSDate(htmlspecialchars($post['request_date']));
-		$this->expected_delivery_datetime = !empty($post['expected_delivery_datetime']) ? convertEuroToUSDateTime(htmlspecialchars($post['expected_delivery_datetime'])) : null;
-		$this->client_reference = htmlspecialchars($post['client_reference']);
-		$this->description = str_replace("'","\'",htmlspecialchars($post['description']));
-		$this->number_of_units = str_replace(",",".",htmlspecialchars($post['number_of_units']));
-		$this->unit = htmlspecialchars($post['unit']);
-		$this->unit_price = str_replace(",", ".", htmlspecialchars($post['unit_price']));
-		$this->discount_percentage = !empty($post['discount_percentage']) ? str_replace(",", ".", htmlspecialchars($post['discount_percentage'])) : 0;
-		$this->fixed_price = !empty($post['fixed_price']) ? str_replace(",", ".", htmlspecialchars($post['fixed_price'])) : 0;
-		$this->client_id = htmlspecialchars($post['client_id']);
-		$this->executor_id = htmlspecialchars($post['executor_id']);
-		$this->delivery_date_exec = convertEuroToUSDate(htmlspecialchars($post['delivery_date_exec']));
-		$this->price_exec = !empty($post['price_exec']) ? str_replace(",", ".", htmlspecialchars($post['price_exec'])) : 0;
-		$this->author_rights = isset($post['author_rights'])?true:false;
+		$this->request_date = isset($post['request_date']) ? convertEuroToUSDate(htmlspecialchars($post['request_date'])) : null;
+		$this->expected_delivery_datetime = isset($post['expected_delivery_datetime']) && !empty($post['expected_delivery_datetime']) ? convertEuroToUSDateTime(htmlspecialchars($post['expected_delivery_datetime'])) : null;
+		$this->client_reference = isset($post['client_reference']) ? htmlspecialchars($post['client_reference']) : '';
+		$this->description = isset($post['description']) ? str_replace("'","\'",htmlspecialchars($post['description'])) : '';
+		$this->number_of_units = isset($post['number_of_units']) ? str_replace(",",".",htmlspecialchars($post['number_of_units'])) : 0;
+		$this->unit = isset($post['unit']) ? htmlspecialchars($post['unit']) : '';
+		$this->unit_price = isset($post['unit_price']) ? str_replace(",", ".", htmlspecialchars($post['unit_price'])) : 0;
+		$this->discount_percentage = isset($post['discount_percentage']) && !empty($post['discount_percentage']) ? str_replace(",", ".", htmlspecialchars($post['discount_percentage'])) : 0;
+		$this->fixed_price = isset($post['fixed_price']) && !empty($post['fixed_price']) ? str_replace(",", ".", htmlspecialchars($post['fixed_price'])) : 0;
+		$this->client_id = isset($post['client_id']) ? htmlspecialchars($post['client_id']) : '';
+		$this->executor_id = isset($post['executor_id']) ? htmlspecialchars($post['executor_id']) : '';
+		$this->delivery_date_exec = isset($post['delivery_date_exec']) && !empty($post['delivery_date_exec']) ? convertEuroToUSDate(htmlspecialchars($post['delivery_date_exec'])) : null;
+		$this->price_exec = isset($post['price_exec']) && !empty($post['price_exec']) ? str_replace(",", ".", htmlspecialchars($post['price_exec'])) : 0;
+		$this->author_rights = isset($post['author_rights']) && !empty($post['author_rights']);
 	}
 	
 	public function close() {

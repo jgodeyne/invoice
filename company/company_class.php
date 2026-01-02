@@ -23,19 +23,19 @@ class Company extends Entity implements EntityInterface {
 	}
 	
 	public function setFromPost($post) {
-		$this->setName(htmlspecialchars($post['name']));
-		$this->setContact(htmlspecialchars($post['contact']));
-		$this->setAddressLine1(htmlspecialchars($post['address_line_1']));
-		$this->setAddressLine2(htmlspecialchars($post['address_line_2']));
-		$this->setPhoneNumber(htmlspecialchars($post['phone_number']));
-		$this->setMobileNumber(htmlspecialchars($post['mobile_number']));
-		$this->setEmail(htmlspecialchars($post['email']));
-		$this->setIban(htmlspecialchars($post['iban']));
-		$this->setBic(htmlspecialchars($post['bic']));
-		$this->setLegalPersonsRegister(htmlspecialchars($post['legal_persons_register']));
-		$this->setVatNumber(htmlspecialchars($post['vat_number']));
-		$this->setInvoiceYear(htmlspecialchars($post['invoice_year']));
-		$this->setInvoiceSequence(htmlspecialchars($post['invoice_sequence']));
+		$this->setName(isset($post['name']) ? htmlspecialchars($post['name']) : '');
+		$this->setContact(isset($post['contact']) ? htmlspecialchars($post['contact']) : '');
+		$this->setAddressLine1(isset($post['address_line_1']) ? htmlspecialchars($post['address_line_1']) : '');
+		$this->setAddressLine2(isset($post['address_line_2']) ? htmlspecialchars($post['address_line_2']) : '');
+		$this->setPhoneNumber(isset($post['phone_number']) ? htmlspecialchars($post['phone_number']) : '');
+		$this->setMobileNumber(isset($post['mobile_number']) ? htmlspecialchars($post['mobile_number']) : '');
+		$this->setEmail(isset($post['email']) ? htmlspecialchars($post['email']) : '');
+		$this->setIban(isset($post['iban']) ? htmlspecialchars($post['iban']) : '');
+		$this->setBic(isset($post['bic']) ? htmlspecialchars($post['bic']) : '');
+		$this->setLegalPersonsRegister(isset($post['legal_persons_register']) ? htmlspecialchars($post['legal_persons_register']) : '');
+		$this->setVatNumber(isset($post['vat_number']) ? htmlspecialchars($post['vat_number']) : '');
+		$this->setInvoiceYear(isset($post['invoice_year']) ? htmlspecialchars($post['invoice_year']) : '');
+		$this->setInvoiceSequence(isset($post['invoice_sequence']) ? htmlspecialchars($post['invoice_sequence']) : '');
 	}
 	
 	public static function findAllNotMe() {

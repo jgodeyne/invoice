@@ -22,18 +22,18 @@ class Client extends Entity implements EntityInterface {
 	}
 	
 	public function setFromPost($post) {
-		$this->setName(htmlspecialchars($post['name']));
-		$this->setContact(htmlspecialchars($post['contact']));
-		$this->setAddressLine1(htmlspecialchars($post['address_line_1']));
-		$this->setAddressLine2(htmlspecialchars($post['address_line_2']));
-		$this->setPhoneNumber(htmlspecialchars($post['phone_number']));
-		$this->setMobileNumber(htmlspecialchars($post['mobile_number']));
-		$this->setEmail(htmlspecialchars($post['email']));
-		$this->setVatNumber(htmlspecialchars($post['vat_number']));
-		$this->setVatRate(htmlspecialchars($post['vat_rate']));
-		$this->setInvoicePaymentDelay(htmlspecialchars($post['invoice_payment_delay']));
-		$this->setLanguage(htmlspecialchars($post['language']));
-		$this->setRemark(htmlspecialchars($post['remark']));
+		$this->setName(isset($post['name']) ? htmlspecialchars($post['name']) : '');
+		$this->setContact(isset($post['contact']) ? htmlspecialchars($post['contact']) : '');
+		$this->setAddressLine1(isset($post['address_line_1']) ? htmlspecialchars($post['address_line_1']) : '');
+		$this->setAddressLine2(isset($post['address_line_2']) ? htmlspecialchars($post['address_line_2']) : '');
+		$this->setPhoneNumber(isset($post['phone_number']) ? htmlspecialchars($post['phone_number']) : '');
+		$this->setMobileNumber(isset($post['mobile_number']) ? htmlspecialchars($post['mobile_number']) : '');
+		$this->setEmail(isset($post['email']) ? htmlspecialchars($post['email']) : '');
+		$this->setVatNumber(isset($post['vat_number']) ? htmlspecialchars($post['vat_number']) : '');
+		$this->setVatRate(isset($post['vat_rate']) ? htmlspecialchars($post['vat_rate']) : '');
+		$this->setInvoicePaymentDelay(isset($post['invoice_payment_delay']) ? htmlspecialchars($post['invoice_payment_delay']) : '');
+		$this->setLanguage(isset($post['language']) ? htmlspecialchars($post['language']) : '');
+		$this->setRemark(isset($post['remark']) ? htmlspecialchars($post['remark']) : '');
 	}
 	
 	/*

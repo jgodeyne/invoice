@@ -26,7 +26,7 @@ CHOWN_ON_REMOTE='33:33'
 # By default perform a real deploy. Use --dry-run to perform a dry run.
 DRY_RUN=0
 FORCE=0
-FIX_PERMS=0
+FIX_PERMS=1
 
 # Optional argument parsing:
 #   --dry-run   Run as a dry run (no files will be changed)

@@ -51,6 +51,7 @@ class Entity implements EntityInterface {
 	}
 	
 	public static function findAll() {
+		$objects = array();
 		$db = new Database();
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class());
@@ -66,6 +67,7 @@ class Entity implements EntityInterface {
 	}
 	
 	public static function findAllByCriteria($criteria) {
+		$objects = array();
 		$db = new Database();
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class()) . " where " . $criteria;
@@ -97,6 +99,7 @@ class Entity implements EntityInterface {
 	}
 	
 	public static function findAllByCriteriaOrdened($criteria, $order) {
+		$objects = array();
 		$db = new Database();
 		$db->connect();
 		$query = "SELECT * FROM " . Entity::getTableName(get_called_class()) . " where " . $criteria
@@ -133,7 +136,7 @@ class Entity implements EntityInterface {
 			$classvars = $this->getProperties();
 			foreach ($classvars as $varname => $varvalue) {
 				if ($varname!="id") {
-					$query .= $varname . "='" . $varvalue . "', ";
+					$query .= $varname . "=" . ($varvalue === null ? "NULL," : "'" . (is_bool($varvalue) ? (int)$varvalue : $varvalue) . "', ");
 				}
 			}
 			$query = substr($query, 0, -2);
@@ -149,7 +152,7 @@ class Entity implements EntityInterface {
 			foreach ($classvars as $varname => $varvalue) {
 				if ($varname!="id") {
 					$varnames .= $varname . ",";
-					$varvalues .= ($varvalue === null ? "NULL," : "'" . $varvalue . "',");
+					$varvalues .= ($varvalue === null ? "NULL," : "'" . (is_bool($varvalue) ? (int)$varvalue : $varvalue) . "',");
 				}
 			}
 			$varnames = substr($varnames, 0, -1);
