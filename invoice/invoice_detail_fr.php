@@ -22,11 +22,10 @@ setlocale(LC_ALL, $locale, "French_Belgium");
 if (class_exists('Locale')) {
 	Locale::setDefault($locale);
 }
-bindtextdomain($domain, $directory) . "<br>";
-textdomain($domain) . "<br>";
-$localeconv = localeconv();
-$dec_point = $localeconv['mon_decimal_point'];
-$thousands_sep = $localeconv['mon_thousands_sep'];
+bindtextdomain($domain, $directory);
+textdomain($domain);
+$dec_point = ',';
+$thousands_sep = '.';
 $invoice_date = '';
 $invoiceDateRaw = $invoice->getOriginalDate();
 if (!empty($invoiceDateRaw)) {

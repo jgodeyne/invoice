@@ -23,9 +23,8 @@ setlocale(LC_ALL, $locale, "Dutch_Belgium");
 if (class_exists('Locale')) {
 	Locale::setDefault($locale);
 }
-$localeconv = localeconv();
-$dec_point = $localeconv['mon_decimal_point'];
-$thousands_sep = $localeconv['mon_thousands_sep'];
+$dec_point = ',';
+$thousands_sep = '.';
 $invoice_date = '';
 $invoiceDateRaw = $invoice->getOriginalDate();
 if (!empty($invoiceDateRaw)) {
