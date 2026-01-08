@@ -31,9 +31,9 @@ class Job extends Entity implements EntityInterface {
 		$this->expected_delivery_datetime = isset($post['expected_delivery_datetime']) && !empty($post['expected_delivery_datetime']) ? convertEuroToUSDateTime(htmlspecialchars($post['expected_delivery_datetime'])) : null;
 		$this->client_reference = isset($post['client_reference']) ? htmlspecialchars($post['client_reference']) : '';
 		$this->description = isset($post['description']) ? str_replace("'","\'",htmlspecialchars($post['description'])) : '';
-		$this->number_of_units = isset($post['number_of_units']) ? str_replace(",",".",htmlspecialchars($post['number_of_units'])) : 0;
+		$this->number_of_units = isset($post['number_of_units']) && $post['number_of_units'] !== '' ? str_replace(",",".",htmlspecialchars($post['number_of_units'])) : 0;
 		$this->unit = isset($post['unit']) ? htmlspecialchars($post['unit']) : '';
-		$this->unit_price = isset($post['unit_price']) ? str_replace(",", ".", htmlspecialchars($post['unit_price'])) : 0;
+		$this->unit_price = isset($post['unit_price']) && $post['unit_price'] !== '' ? str_replace(",", ".", htmlspecialchars($post['unit_price'])) : 0;
 		$this->discount_percentage = isset($post['discount_percentage']) && !empty($post['discount_percentage']) ? str_replace(",", ".", htmlspecialchars($post['discount_percentage'])) : 0;
 		$this->fixed_price = isset($post['fixed_price']) && !empty($post['fixed_price']) ? str_replace(",", ".", htmlspecialchars($post['fixed_price'])) : 0;
 		$this->client_id = isset($post['client_id']) ? htmlspecialchars($post['client_id']) : '';

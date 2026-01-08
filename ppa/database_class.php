@@ -38,6 +38,7 @@ class Database implements DatabaseInterface {
 			if($this->myconn) {  
 				$seldb = mysqli_select_db($this->myconn, $this->db_schema);  
 				if($seldb) {  
+					mysqli_set_charset($this->myconn, 'utf8mb4');
 					$this->con = true;  
 				} else {  
 					throw new Exception(mysqli_error($this->myconn));  

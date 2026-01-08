@@ -14,12 +14,6 @@ if (empty($_POST['number_of_units'])) {
     exit(0);
 }
 
-if (empty($_POST['unit_price'])) {
-    $_SESSION['error'] = "Unit price is required.";
-    header("Location: ../job/job_form.php");
-    exit(0);
-}
-
 $job= new Job();
 $job->setFromPost($_POST);
 $job->save();

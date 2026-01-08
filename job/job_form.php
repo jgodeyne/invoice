@@ -124,7 +124,7 @@ foreach (Client::findAllOrdened("name") as $client) {
 </tr>
 <tr>
 <td>&nbsp;Prijs per eenheid:</td>
-<td>&nbsp;<input type="text" maxlength="15" size="15" name="unit_price" value="<?=str_replace(".",",",$unit_price)?>" required /></td>
+<td>&nbsp;<input type="text" maxlength="15" size="15" name="unit_price" value="<?=str_replace(".",",",$unit_price)?>" /></td>
 </tr>
 <tr>
 <td>&nbsp;Korting %:</td>
